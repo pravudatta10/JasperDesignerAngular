@@ -1,0 +1,14 @@
+#rd{
+    color: #ec5a5a; 
+}
+#main{
+      
+      
+}
+
+table.table>thead>tr>th {
+    background-color: #337ab7 !important;
+    color: #fff !important; 
+    padding: 6px !important;
+    letter-spacing: 1px;
+}

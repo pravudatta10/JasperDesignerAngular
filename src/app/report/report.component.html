@@ -1,0 +1,68 @@
+<div class="p-2" id="main">
+  <div class="row">
+    <div class="col-10">
+      <h1 class="text-center" id="rd">Report Designer</h1>
+    </div>
+    <div class="col-2">
+      <button type="button" class="btn btn-warning btn pi pi-sign-out" routerLink="/login"> Logout</button>
+    </div>
+  </div>
+  <h4>Authority: {{getRole}}</h4>
+  <div *ngIf="getRole!='USER'">
+    <h2>Upload Final Document: </h2>
+    <input type="file" class="form-control form-control-sm" (change)="onFileChanged($event,-1)"
+      [(ngModel)]="fileField" />
+  </div>
+
+
+  <table class="table table-striped">
+    <thead class="custom-table-header">
+      <tr>
+        <th scope="col">SI No</th>
+        <th scope="col">Report Name</th>
+        <th scope="col">Last Modified On</th>
+        <th scope="col">Last Modified By</th>
+        <th scope="col">Preview</th>
+        <th scope="col">Final Preview</th>
+        <th scope="col">Changed Template</th>
+        <th scope="col" *ngIf="getRole!='ADMIN'">Send For Approval</th>
+        <th scope="col" *ngIf="getRole!='USER'">Approve</th>
+        <th scope="col" *ngIf="getRole!='USER'">Reject</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of allDesign  let index = index let i=index">
+        <td>{{getIndex(index)}}</td>
+        <td><a class="btn btn-link btn-sm" (click)="downloadFile(data.reportName)">
+            {{ data.reportName|removeExtension }}
+          </a></td>
+        <td>{{data.lastModifiedOn | date: 'dd-MM-YYYY'}}</td>
+        <td>{{data.lastModifiedBy}}</td>
+
+        <td class="text-center">
+          <button class="btn btn-warning btn-sm mx-1" (click)="generateReport(data.reportName,'Preview')">
+            <i class="fas fa-times"></i> Preview</button>
+        </td>
+        <td class="text-center">
+          <button class="btn btn-warning btn-sm mx-1" (click)="generateReport(data.reportName,'Final')">
+            <i class="fas fa-times"></i> Final Preview</button>
+        </td>
+        <td>
+          <input type="file" class="form-control form-control-sm" (change)="onFileChanged($event,i)" />
+        </td>
+        <td *ngIf="getRole!='ADMIN'"><button type="button" class="btn btn-warning btn-sm" [disabled]="data.fileUploaded"
+            (click)="sendForApproval(data.id,i)">Send For Approval</button></td>
+        <td class="text-center" *ngIf="getRole!='USER'">
+          <button class="btn btn-success btn-sm mx-1" [disabled]="data.isApprove" (click)="approve(data.id,'Approve')">
+            <i class="fas fa-check"></i> Approve
+          </button>
+        </td>
+        <td *ngIf="getRole!='USER'">
+          <button class="btn btn-danger btn-sm mx-1" [disabled]="data.isReject" (click)="reject(data.id,'Reject')">
+            <i class="fas fa-times"></i> Reject
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

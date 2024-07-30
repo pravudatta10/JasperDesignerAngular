@@ -1,1 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+.swal2-popup {
+    width: 300px !important; /* Adjust the width as needed */
+    font-size: 0.8rem; /* Adjust the font size as needed */
+  }
+  

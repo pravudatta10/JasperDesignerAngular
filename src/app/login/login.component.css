@@ -1,0 +1,36 @@
+.container {
+    margin-top: 100px;
+  }
+  
+  .card {
+    border-radius: 10px;
+  }
+  
+  .card-header {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+  
+  .btn-primary {
+    background-color: #007bff;
+    border: none;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0056b3;
+  }
+  
+  .form-label {
+    font-weight: 600;
+  }
+  
+  .form-control {
+    border-radius: 5px;
+  }
+  .login-background {
+    background-color: #b3b5b8;  
+    min-height: 100vh; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
