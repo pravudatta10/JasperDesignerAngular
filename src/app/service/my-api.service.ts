@@ -13,7 +13,7 @@ export class MyApiService {
     uname,
     role
   }
-  private apiUrl = 'http://localhost:9696';
+  private apiUrl = 'http://192.168.2.24:8080/jasper';
   constructor(private http: HttpClient) {
   }
   downloadFile(fileName: string): Observable<Blob> {
